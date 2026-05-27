@@ -48,7 +48,10 @@ fn run_command(cli: Cli) -> Result<(),TodoError> {
 fn main() {
     let cli = Cli::parse();
     if let Err(e) = run_command(cli) {
-        eprintln!("Error: {}", e);  //TODO AMC cos'è eprintln!
+        // eprintln! is Equivalent to the println! macro, except that output goes to io::stderr instead of io::stdout. See println! for example usage.
+        // Use eprintln! only for error and progress messages.
+        // Use println! instead for the primary output of your program
+        eprintln!("Error: {}", e);
         std::process::exit(1)    //exit from main value 1
     }
     
