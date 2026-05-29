@@ -1,6 +1,6 @@
 use std::rc::Rc;
 use crate::application::domain::todo_list_domain::todolist::TodoList;
-use crate::application::ports::xin::domain::todo_list_domain::todolist_usecases::{AddTodoUseCase,CompleteTodoUseCase};
+use crate::application::ports::iin::domain::todo_list_domain::todolist_usecases::{AddTodoUseCase, CompleteTodoUseCase};
 use crate::application::ports::out::todolist_persistence_ports::{SaveTodoListOutPort, ReadTodoListOutPort};
 
 pub struct TodolistAppService {
@@ -13,7 +13,7 @@ impl TodolistAppService {
         Self {
             save_todolist_outport: save_port,
             read_todolist_outport: read_port,
-        }        
+        }
     }
 }
 
