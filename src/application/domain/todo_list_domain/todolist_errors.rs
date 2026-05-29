@@ -4,9 +4,7 @@ use std::fmt::Formatter;
 //for custom errors, it's best practice to implement display and std:errors:Error
 
 #[derive(Debug)]
-pub enum TodoError {
-    FileError(String),
-    ParseError(String),
+pub enum TodolistError {
     TaskNotFound(usize),
     InvalidInput(String)
 }
@@ -15,13 +13,11 @@ pub enum TodoError {
 //           allowing the usage of the .to_string() method.
 // Prefer implementing the Display trait for a type, rather than ToString.
 // Display is similar to Debug, but Display is for user-facing output, and so cannot be derived.
-impl fmt::Display for TodoError {
+impl fmt::Display for TodolistError {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {  //TODO AMC cos'è fmt::Result ? dove scrive ? cosa fa write! ?
         match self {
-            TodoError::FileError(msg) => write!(f,"File error: {}",msg),
-            TodoError::ParseError(msg) => write!(f,"Parse error: {}",msg),
-            TodoError::TaskNotFound(id) => write!(f,"Task {} not found",id),
-            TodoError::InvalidInput(msg) => write!(f,"Invalid input: {}",msg),
+            TodolistError::TaskNotFound(id) => write!(f, "Task {} not found", id),
+            TodolistError::InvalidInput(msg) => write!(f, "Invalid input: {}", msg),
         }
     }
 }
@@ -29,7 +25,7 @@ impl fmt::Display for TodoError {
 
 // Errors must describe themselves through the Display and Debug traits.
 // Error messages are typically concise lowercase sentences without trailing punctuation:
-impl std::error::Error for TodoError {
+impl std::error::Error for TodolistError {
     // Provided methods
     // fn source(&self) -> Option<&(dyn Error + 'static)> { ... }
     // fn description(&self) -> &str { ... }
